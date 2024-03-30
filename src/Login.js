@@ -4,12 +4,16 @@ import './Login.css';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [displayname, setDisplayname] = useState('');
+    const [email, setEmail] = useState('');
+    const [isLogin, setIsLogin] = useState(true);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+    };
 
-        console.log("Username:", username);
-        console.log("Password:", password);
+    const toggleForm = () => {
+        setIsLogin(!isLogin);
     };
 
     return (
@@ -24,6 +28,27 @@ function Login() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
+                {!isLogin && (
+                    <input
+                        type='text'
+                        id="displayname"
+                        name="displayname"
+                        placeholder="DisplayName..."
+                        value={displayname}
+                        onChange={(e) => setDisplayname(e.target.value)}
+                    />
+                )}
+                {!isLogin && (
+                <input
+                    type="email"
+                    id="email"
+                    name="Email"
+                    placeholder="Email..."
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                )}
                 <input
                     type="password"
                     id="password"
@@ -32,16 +57,17 @@ function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                      </form>
-                      <div className="signup-link">
-                <input type="submit" className='loginbtn' value="Log In" />
-
-                
-                    <p>Don't have an account? 
-                        <br></br><a href='#'>SIGN UP</a></p>
-                </div>
+                <input type="submit" className='loginbtn' value={isLogin ? "Log In" : "Sign Up"} />
+            </form>
+            <div className="signup-link">
+                <p>
+                    {isLogin ? "Don't have an account?" : "Already have an account?"}
+                    <br />
+                    <a href='#' onClick={toggleForm}>{isLogin ? "SIGN UP" : "LOG IN"}</a>
+                </p>
+            </div>
         </div>
     );
 }
 
-export default Login;
+export default Login;
