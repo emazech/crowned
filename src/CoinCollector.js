@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './CoinCollector.css';
-import characterImage from './images/character.png';
-import coinImage from './images/coin.png';
+import characterImage from './assets/character.png';
+import coinImage from './assets/coin.png';
 
 const squareSize = 50;
 
