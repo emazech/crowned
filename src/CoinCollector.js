@@ -62,22 +62,6 @@ const CoinCollector = () => {
   return (
     <div className="background">
       <div className="score">Score: {score}</div>
-      <div className="grid">
-        {[...Array(numRows)].map((_, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {[...Array(numCols)].map((_, colIndex) => (
-              <div
-                key={colIndex}
-                className={`cell ${
-                  position.row === rowIndex && position.col === colIndex
-                    ? 'active'
-                    : ''
-                }`}
-              ></div>
-            ))}
-          </div>
-        ))}
-      </div>
       {coins.map((coin) => (
         <img
         key={coin.id}
