@@ -1,0 +1,25 @@
+.background {
+    width: 50%;
+    height: 400px;
+    background-color: lightblue;
+    position: absolute;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+  
+  .coin {
+    width: 20px;
+    height: 20px;
+    background-color: gold;
+    border-radius: 50%;
+    position: absolute;
+  }
+  
+  .character {
+    width: 50px;
+    height: 60px;
+    position: absolute;
+  }
+  
