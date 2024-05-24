@@ -26,6 +26,7 @@
   border: 1px solid #fadadd;
   border-radius: 4px;
   box-sizing: border-box;
+  color: rgb(246, 62, 215);
 }
 .container input::placeholder {
   color: #fadadd;
