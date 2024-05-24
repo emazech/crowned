@@ -1,0 +1,53 @@
+#elementsToReturn {
+  height: 30vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 0px 5%;
+}
+
+.letters {
+  margin: 2px;
+  font-size: 1.2vw;
+  text-align: center;
+  min-width: 20px;
+  min-height: 15px;
+  height: 3rem;
+}
+
+.alreadyInWordLetter {
+  background-color: rgb(5, 216, 5);
+  color: white;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.wrongLetterGuess {
+  background: rgb(255, 0, 0);
+  color: white;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.untriedLetter {
+  cursor: auto;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #elementsToReturn {
+    height: 40vh;
+  }
+
+  .letters {
+    font-size: 1.5vw;
+    height: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .letters {
+    font-size: 3vw;
+  }
+}
