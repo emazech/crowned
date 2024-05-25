@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import './App.css';
-import Login from './Login';
-import SignUp from './SignUp';
-import CategoryAndNumOfLettersToChoose from './SaveTheCheese/Components/CategoryAndNumOfLetterToChoose.js';
-import WordToGuess from './SaveTheCheese/Components/WordToGuess.js';
-import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
-import Crown from './assets/crown.png';
-import Icon from './assets/icon.png';
+import React, { useState } from "react";
+import "./App.css";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import CategoryAndNumOfLettersToChoose from "./SaveTheCheese/Components/CategoryAndNumOfLetterToChoose.js";
+import WordToGuess from "./SaveTheCheese/Components/WordToGuess.js";
+import Maze from "./Maze/Maze.js";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
+import Crown from "./assets/crown.png";
+import Icon from "./assets/icon.png";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,13 +21,14 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="side">
-        <img src={Crown} alt='CrownIcon' className='crown-icon' />
-        <p className='crown'>WELCOME TO CROWNED</p>
-        <img src={Icon} alt='GameIcon' />
-      </div>
-      <HashRouter>
+    <div>
+      {/* <div className="side">
+        <img src={Crown} alt="CrownIcon" className="crown-icon" />
+        <p className="crown">WELCOME TO CROWNED</p>
+        <img src={Icon} alt="GameIcon" />
+      </div> */}
+      <Maze />
+      {/* <HashRouter>
         <Routes>
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
@@ -39,7 +41,7 @@ function App() {
             <Route path="*" element={<Navigate to="/login" />} />
           )}
         </Routes>
-      </HashRouter>
+      </HashRouter> */}
     </div>
   );
 }
