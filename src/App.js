@@ -22,13 +22,13 @@ function App() {
 
   return (
     <div>
-      {/* <div className="side">
+      <div className="side">
         <img src={Crown} alt="CrownIcon" className="crown-icon" />
         <p className="crown">WELCOME TO CROWNED</p>
         <img src={Icon} alt="GameIcon" />
-      </div> */}
-      <Maze />
-      {/* <HashRouter>
+      </div>
+      {/* <Maze /> */}
+      <HashRouter>
         <Routes>
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
@@ -41,7 +41,7 @@ function App() {
             <Route path="*" element={<Navigate to="/login" />} />
           )}
         </Routes>
-      </HashRouter> */}
+      </HashRouter>
     </div>
   );
 }
