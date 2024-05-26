@@ -1,0 +1,58 @@
+.memory-card {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transform: rotateY(180deg);
+  animation: 2s hideCard linear;
+  transition: transform 0.5s;
+}
+
+@keyframes hideCard {
+
+  0%,
+  70% {
+    transform: rotateY(0);
+  }
+
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.memory-card img {
+  max-width: 80%;
+  max-height: 80%;
+  transition: transform 0.5s;
+  transform: scale(0);
+  animation: 2s hideImage linear;
+}
+
+@keyframes hideImage {
+
+  0%,
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+.memory-card.active {
+  transform: rotateY(0);
+}
+
+.memory-card.correct {
+  background-color: #b3f9b6;
+}
+
+.memory-card.wrong {
+  background-color: #db5151;
+}
+
+.memory-card.active img {
+  transform: scale(1);
+}
