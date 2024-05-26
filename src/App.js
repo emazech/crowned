@@ -8,6 +8,7 @@ import Maze from "./Maze/Maze.js";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Crown from "./assets/crown.png";
 import Icon from "./assets/icon.png";
+import Home from "./Quiz/pages/Home.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,6 +37,7 @@ function App() {
             <>
               <Route path="/game" element={<WordToGuess />} />
               <Route path="/" element={<CategoryAndNumOfLettersToChoose />} />
+              <Route path="/home" element={<Home />}
             </>
           ) : (
             <Route path="*" element={<Navigate to="/login" />} />
