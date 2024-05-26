@@ -6,20 +6,35 @@ function SignUp({ onSignUp }) {
   const [password, setPassword] = useState('');
   const [displayname, setDisplayname] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const userExists = users.some(u => u.username === username);
+    try {
+      const response = await fetch('http://localhost:8000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          displayname,
+          email,
+        }),
+      });
 
-    if (userExists) {
-      alert('Username already exists');
-    } else {
-      const newUser = { username, password, displayname, email };
-      users.push(newUser);
-      localStorage.setItem('users', JSON.stringify(users));
-      onSignUp();
+      const data = await response.json();
+      
+      if (!response.ok) {
+        setError(data.message);
+      } else {
+        console.log(data.message); // Optionally handle success message
+        onSignUp();
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
@@ -69,6 +84,7 @@ function SignUp({ onSignUp }) {
           <a href="/#/login">LOG IN</a>
         </p>
       </div>
+      {error && <p>{error}</p>}
     </div>
   );
 }

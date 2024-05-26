@@ -4,17 +4,37 @@ import './Login.css';
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.username === username && u.password === password);
+    try {
+      const response = await fetch('http://localhost:8000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-    if (user) {
-      onLogin();
-    } else {
-      alert('Invalid username or password');
+      const data = await response.json();
+
+      if (response.ok) {
+        onLogin();
+        const loggedUser = { id: data.user.id , name: data.user.displayname}
+        localStorage.setItem("user", JSON.stringify(loggedUser));
+        console.log("respones", loggedUser)
+
+      } else {
+        setError(data.message || 'Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again later.');
     }
   };
 
@@ -39,6 +59,7 @@ function Login({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
         />
         <input type="submit" className='loginbtn' value="Log In" />
+        {error && <p className="error">{error}</p>}
       </form>
       <div className="signup-link">
         <p>
