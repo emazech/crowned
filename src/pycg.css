@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Cute Font", sans-serif;
+    box-sizing: border-box;
+}
+
+.text h1 {
+    color: rgba(34, 146, 26, 0.726);
+}
+
+.container {    
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+    background-image: url('./images/pink.jpeg');
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
+
+
+.main-content {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+.first_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    background-color: rgba(34, 146, 26, 0.726);
+    margin: 10px;
+    padding: 17px;
+    color: white;   
+    border-radius: 15px;
+}
+
+.second_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    background-color:rgba(34, 146, 26, 0.726);
+    margin: 10px;
+    padding: 17px;
+    color: white;   
+    border-radius: 15px;
+}
+.first_box:hover {
+    background-color: pink;
+}
+.second_box:hover {
+    background-color: pink;
+}
+
+.third_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    background-color: rgba(34, 146, 26, 0.726);
+    margin: 10px;
+    padding: 17px;
+    color: white;   
+    border-radius: 15px;
+}
+
+.third_box:hover {
+    background-color: pink;
+}
+
+.fourth_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    background-color: rgba(34, 146, 26, 0.726);
+    margin: 10px;
+    padding: 17px;
+    color: white;   
+    border-radius: 15px;
+}
+
+.fourth_box:hover {
+    background-color: pink;
+}
