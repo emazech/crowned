@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './CoinCollector.css';
-import characterImage from './assets/character.png';
+import characterImage from './assets/haley.png';
 import coinImage from './assets/coin.png';
 
 const squareSize = 50;
