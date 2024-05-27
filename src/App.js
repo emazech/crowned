@@ -37,7 +37,8 @@ function App() {
             <>
               <Route path="/game" element={<WordToGuess />} />
               <Route path="/" element={<CategoryAndNumOfLettersToChoose />} />
-              <Route path="/home" element={<Home />}
+              <Route path="/home" element={<Home />} />
+              <Route path="*" element={<Navigate to="/home" />} />
             </>
           ) : (
             <Route path="*" element={<Navigate to="/login" />} />
