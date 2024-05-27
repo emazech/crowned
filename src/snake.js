@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './SnakeGame.css';
-import CountdownTimer from './timer'; // Import the CountdownTimer component
+import CountdownTimer from './timer';
 
 const SnakeGame = () => {
-    // State variables for game logic
     const [snakeBody, setSnakeBody] = useState([{ x: 6, y: 9 }, { x: 5, y: 9 }, { x: 4, y: 9 }]);
     const [foodPosition, setFoodPosition] = useState({ x: 10, y: 10 });
     const [direction, setDirection] = useState('RIGHT');
@@ -106,7 +105,6 @@ const SnakeGame = () => {
         }
     };
 
-    // Check for collision with food
     const checkFoodCollision = (head) => {
         return head.x === foodPosition.x && head.y === foodPosition.y;
     };
@@ -125,7 +123,7 @@ const SnakeGame = () => {
         setDirection('RIGHT');
         setGameOver(false);
         setScore(0);
-        setGameStarted(false); // Add resetting gameStarted state
+        setGameStarted(false);
     };
 
     const startGame = () => {
