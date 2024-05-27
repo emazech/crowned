@@ -9,7 +9,7 @@ const SnakeGame = () => {
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [canChangeDirection, setCanChangeDirection] = useState(true);
-    const [gameStarted, setGameStarted] = useState(false); // Add state for gameStarted
+    const [gameStarted, setGameStarted] = useState(false);
 
     useEffect(() => {
         const handleKeyPress = (event) => {
