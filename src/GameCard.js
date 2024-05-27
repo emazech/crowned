@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import CoinCollector from './assets/CoinCollector.jpeg';
 import Snake from './assets/Snake.jpeg';
 import ChainsawManMaze from './assets/ChainsawMaze.png';
-import SaveTheCheese from './assets/SaveTheCheese.png';
-import TriviaQuestion from './assets/Quiz.png';
+import SaveTheCheese from './assets/SaveTheCheese.jpeg';
+import TriviaQuestion from './assets/Quiz.jpeg';
 import MemoryCard from './assets/MemoryCard.png';
 
 const GameAttr = {
