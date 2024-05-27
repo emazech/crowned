@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Cookies from 'js-cookie';
 import './Login.css';
 
-function Login({ onLogin }) {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,13 +25,17 @@ function Login({ onLogin }) {
       });
 
       const data = await response.json();
-
       if (response.ok) {
-        onLogin();
-        const loggedUser = { id: data.user.id , name: data.user.displayname}
+        const loggedUser = { id: data.user.id, name: data.user.displayname };
+        const userToken = { token: data.user.remember_token };
+        const userid = data.user.id;
         localStorage.setItem("user", JSON.stringify(loggedUser));
-        console.log("respones", loggedUser)
-
+        Cookies.set('userToken', userToken.token, { expires: 7 });
+        localStorage.setItem("userid", userid);
+        console.log("response", loggedUser);
+        
+        // Navigate to the desired route
+        navigate('/TimedCC');
       } else {
         setError(data.message || 'Invalid username or password');
       }
