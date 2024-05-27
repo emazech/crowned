@@ -1,0 +1,42 @@
+.timer-circle {
+    margin-left: 255px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: pink;
+    opacity: 0;
+    animation: pulsate 2s infinite;
+  }
+  
+  @keyframes pulsate {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.3;
+    }
+  }
+  
+  .timer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .timer-text-animation {
+    opacity: 0; /* Fade out the text */
+  }
+  
+.countdown-timer {
+    margin-left: 400px;
+}
