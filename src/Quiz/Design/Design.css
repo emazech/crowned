@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Sevillana&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sevillana&display=swap");
 * {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -10,7 +10,7 @@
   display: flex;
   background-color: #020230;
   color: white;
-  background-image: url("./assets/yW9SDu.jpg");
+  background-image: url("../Assets/yW9SDu.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -19,7 +19,7 @@
 .main {
   width: 75%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
-    url("./assets/bg.jpg");
+    url("../Assets/bg.jpg");
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
@@ -172,7 +172,7 @@
 
 .endText {
   position: relative;
-  top: 30px; 
+  top: 30px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -197,16 +197,16 @@
 }
 
 .startInput {
-    width: 100%;
-    height: 35px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 25px;
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 25px;
 }
 
 .startInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .startButton {
@@ -216,16 +216,16 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 30px;
-  font-family: 'Calibri', sans-serif; 
-  background-color: #007BFF; 
-  color: white; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: background-color 0.3s, transform 0.3s; 
+  font-family: "Calibri", sans-serif;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .startButton:hover {
-  background-color: #0056b3; 
-  transform: translateY(-4px); 
+  background-color: #0056b3;
+  transform: translateY(-4px);
 }
 
 .startButton:active {
@@ -233,10 +233,9 @@
   transform: translateY(0);
 }
 
-
 .restartButton {
   position: relative;
-  top: -100px; 
+  top: -100px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -247,15 +246,14 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 30px;
-  font-family: 'Calibri', sans-serif; 
-  background-color: #007BFF; 
-  color: white; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: background-color 0.3s, transform 0.3s; 
+  font-family: "Calibri", sans-serif;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-
-@media screen and (max-width:750px) {
+@media screen and (max-width: 750px) {
   .pyramid {
     display: none;
   }
@@ -267,7 +265,7 @@
   .question {
     font-size: 14px;
   }
-  
+
   .answer {
     font-size: 12px;
     border-radius: 10px;

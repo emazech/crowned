@@ -1,4 +1,4 @@
-import "../Design/Design"
+import "../Design/Design.css"
 
 const Pyramid = ({ questionNumber, moneyPyramid }) => {
 

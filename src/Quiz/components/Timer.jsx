@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../Design/Design"
+import "../Design/Design.css"
 
 const Timer = ({ setStop, questionNumber }) => {
   const [timer, setTimer] = useState(30);

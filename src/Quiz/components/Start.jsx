@@ -1,12 +1,12 @@
 import { useState } from "react";
-import "../Design/Design"
+import "../Design/Design.css"; 
 
-const Start = ({setUsername}) => {
+const Start = ({ setUsername }) => {
   const [text, setText] = useState("");
 
   const handleClick = () => {
-    setUsername(text)
-  }
+    setUsername(text);
+  };
 
   return (
     <div className="start">
