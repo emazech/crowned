@@ -5,7 +5,7 @@
   margin: 0;
 }
 
-.app {
+#quizDiv {
   height: 100vh;
   display: flex;
   background-color: #020230;
@@ -160,13 +160,13 @@
 }
 
 .moneyListItemNumber {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 100;
   width: 30%;
 }
 
 .moneyListItemAmount {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 300;
 }
 

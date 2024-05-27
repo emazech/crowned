@@ -9,14 +9,14 @@ const Start = ({ setUsername }) => {
   };
 
   return (
-    <div className="start">
+    <div className="start text-black">
       <input
-        type="text"
+        type="text text-black"
         placeholder="Username"
         className="startInput"
         onChange={(e) => setText(e.target.value)}
       />
-      <button className="startButton" onClick={handleClick}>Start</button>
+      <button className="startButton py-0" onClick={handleClick}>Start</button>
     </div>
   );
 };
