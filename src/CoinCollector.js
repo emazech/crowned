@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './CoinCollector.css';
 import characterImage from './assets/haley.png';
 import coinImage from './assets/coin.png';
+import Timer from './timer';
 
 const squareSize = 50;
+const gameid = 4;
 
 const CoinCollector = () => {
   const numCols = 12;
@@ -12,6 +14,8 @@ const CoinCollector = () => {
   const [position, setPosition] = useState({ row: 0, col: 0 });
   const [coins, setCoins] = useState(generateRandomCoins());
   const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   function generateRandomCoins() {
     const coins = [];
@@ -59,32 +63,88 @@ const CoinCollector = () => {
     }
   }, [position, coins]);
 
+  useEffect(() => {
+    if (coins.length === 0) {
+      setGameOver(true);
+      sendScoreToBackend(userId, gameid, score);
+    }
+  }, [coins, score]);
+
+  const userId = localStorage.getItem('userid');
+
+  const sendScoreToBackend = async (userId, gameid, newScore) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ score: newScore, user_id: userId, game_id: gameid }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log('Score sent successfully:', result);
+    } catch (error) {
+      console.error('Failed to send score:', error);
+      console.log(userId, gameid, newScore);
+    }
+  };
+  const startGame = () => {
+    setGameStarted(true);
+  };
+
+
+  const restartGame = () => {
+    setPosition({ row: 0, col: 0 });
+    setCoins(generateRandomCoins());
+    setGameOver(false);
+    sendScoreToBackend(userId, gameid, score); // Send the score to the backend
+    setScore(0); // Reset the score after sending it to the backend
+    setGameStarted(true);
+  };
+
   return (
     <div className="background">
-      <div className="score">Score: {score}</div>
-      {coins.map((coin) => (
-        <img
-        key={coin.id}
-        src={coinImage}
-        alt="Coin"
-        className="coin"
-        style={{
-          top: `${coin.row * squareSize + (squareSize - 20) / 2}px`,
-          left: `${coin.col * squareSize + (squareSize - 20) / 2}px`,
-        }}
-      />
-      ))}
-      <img
-        src={characterImage}
-        alt="Character"
-        className="character"
-        style={{
-          top: `${position.row * squareSize}px`,
-          left: `${position.col * squareSize}px`,
-        }}
-      />
+      {gameStarted ? ( // Render the game or countdown timer based on gameStarted state
+        <>
+          <div className="score">Score: {score}</div>
+          {coins.map((coin) => (
+            <img
+              key={coin.id}
+              src={coinImage}
+              alt="Coin"
+              className="coin"
+              style={{
+                top: `${coin.row * squareSize + (squareSize - 20) / 2}px`,
+                left: `${coin.col * squareSize + (squareSize - 20) / 2}px`,
+              }}
+            />
+          ))}
+          <img
+            src={characterImage}
+            alt="Character"
+            className="character"
+            style={{
+              top: `${position.row * squareSize}px`,
+              left: `${position.col * squareSize}px`,
+            }}
+          />
+          {gameOver && (
+            <button className="restart-button" onClick={restartGame}>
+              Restart Game
+            </button>
+          )}
+        </>
+      ) : (
+        <div className="countdown-timer-wrapper">
+          <Timer hours={0} minutes={0} seconds={3} onTimerEnd={startGame} />
+        </div>
+      )}
     </div>
   );
 };
-
 export default CoinCollector;
