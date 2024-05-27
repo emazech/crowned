@@ -35,7 +35,7 @@ function Login() {
         console.log("response", loggedUser);
         
         // Navigate to the desired route
-        navigate('/TimedCC');
+        navigate('/choose-game');
       } else {
         setError(data.message || 'Invalid username or password');
       }
