@@ -86,7 +86,7 @@ function WordToGuess() {
 
     useEffect(() => {
         returnAWordToGuess();
-    }, []);
+    }, );
 
     return (
         <>
