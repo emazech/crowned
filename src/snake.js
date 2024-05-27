@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './SnakeGame.css';
+import CountdownTimer from './timer';
 
 const SnakeGame = () => {
-    // State variables for game logic
     const [snakeBody, setSnakeBody] = useState([{ x: 6, y: 9 }, { x: 5, y: 9 }, { x: 4, y: 9 }]);
     const [foodPosition, setFoodPosition] = useState({ x: 10, y: 10 });
     const [direction, setDirection] = useState('RIGHT');
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0);
     const [canChangeDirection, setCanChangeDirection] = useState(true);
+    const [gameStarted, setGameStarted] = useState(false);
 
     useEffect(() => {
         const handleKeyPress = (event) => {
@@ -42,14 +43,14 @@ const SnakeGame = () => {
 
     useEffect(() => {
         const gameLoop = setInterval(() => {
-            if (!gameOver) {
+            if (!gameOver && gameStarted) {
                 moveSnake();
                 checkCollision();
             }
         }, 200);
 
         return () => clearInterval(gameLoop);
-    }, [snakeBody, direction, gameOver]);
+    }, [snakeBody, direction, gameOver, gameStarted]);
 
     const moveSnake = () => {
         const newSnakeBody = [...snakeBody];
@@ -104,7 +105,6 @@ const SnakeGame = () => {
         }
     };
 
-    // Check for collision with food
     const checkFoodCollision = (head) => {
         return head.x === foodPosition.x && head.y === foodPosition.y;
     };
@@ -123,20 +123,34 @@ const SnakeGame = () => {
         setDirection('RIGHT');
         setGameOver(false);
         setScore(0);
+        setGameStarted(false);
     };
+
+    const startGame = () => {
+        setGameStarted(true);
+    };
+
     return (
         <div className="game-container">
-            <div className="game-board">
-                {snakeBody.map((segment, index) => (
-                    <div key={index} className="snake-segment" style={{ left: segment.x * 20, top: segment.y * 20 }}></div>
-                ))}
-                <div className="food" style={{ left: foodPosition.x * 20, top: foodPosition.y * 20 }}></div>
-                {gameOver && (
-                    <div className="game-over">
-                        Game Over! <button onClick={restartGame} className='restart-button'>Restart</button>
-                    </div>
-                )}
-            </div>
+            {!gameStarted && (
+                <div className="countdown-timer-wrapper">
+                    <CountdownTimer hours={0} minutes={0} seconds={3} onTimerEnd={startGame} />
+                </div>
+            )}
+            {gameStarted && (
+                <div className="game-board">
+                    {snakeBody.map((segment, index) => (
+                        <div key={index} className="snake-segment" style={{ left: segment.x * 20, top: segment.y * 20 }}></div>
+                    ))}
+                    <div className="food" style={{ left: foodPosition.x * 20, top: foodPosition.y * 20 }}></div>
+                    {gameOver && (
+                        <div className="game-over">
+                           <p> Game Over!</p>
+                           <button onClick={restartGame} className='restart-button'>Restart</button>
+                        </div>
+                    )}
+                </div>
+            )}
             <div className="game-info">
                 <div>Score: {score}</div>
             </div>
