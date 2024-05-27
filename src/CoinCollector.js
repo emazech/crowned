@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './CoinCollector.css';
 import characterImage from './assets/haley.png';
 import coinImage from './assets/coin.png';
-import Timer from './timer';
+import Timer from './Timer';
 
 const squareSize = 50;
 const gameid = 4;

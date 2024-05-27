@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './SnakeGame.css';
-import CountdownTimer from './timer';
+import CountdownTimer from './Timer';
 
 const SnakeGame = () => {
     const [snakeBody, setSnakeBody] = useState([{ x: 6, y: 9 }, { x: 5, y: 9 }, { x: 4, y: 9 }]);
