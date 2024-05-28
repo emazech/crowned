@@ -23,3 +23,11 @@
     position: absolute;
   }
   
+  .game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f9e6f2; /* Light pink */
+    min-height: 100vh;
+}

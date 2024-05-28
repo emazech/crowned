@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Cookies from 'js-cookie';
 import './Login.css';
 
+import Crown from './assets/crown.png';
+import Icon from './assets/icon.png';
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +29,7 @@ function Login() {
 
       const data = await response.json();
       if (response.ok) {
-        const loggedUser = { id: data.user.id, name: data.user.displayname };
+        const loggedUser = { id: data.user.id, name: data.user.displayname, username: data.user.username };
         const userToken = { token: data.user.remember_token };
         const userid = data.user.id;
         localStorage.setItem("user", JSON.stringify(loggedUser));
@@ -46,7 +49,28 @@ function Login() {
   };
 
   return (
-    <div className="container">
+    <div className='bg-pink'>
+        <div className="app">
+       <div className="side">
+       <img src={Crown} alt='CrownIcon' className='crown-icon' />
+      <p className='crown'>WELCOME TO CROWNED</p>
+       <img src={Icon} alt='GameIcon'></img>
+      </div>
+      </div>
+    <div className="containerr"   style={{ 
+    position: 'relative',
+    maxWidth: '400px',
+    backgroundColor: 'white',
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    color: '#fadadd',
+    marginLeft: '60%',
+    borderRadius: '15px',
+    marginTop: '120px',
+    height: '400px'
+  }}>
       <span>Crowned</span>
       <form onSubmit={handleSubmit}>
         <input
@@ -72,10 +96,11 @@ function Login() {
         <p>
           Don't have an account?
           <br />
-          <a href="/#/signup">SIGN UP</a>
+          <a href="/signup">SIGN UP</a>
         </p>
       </div>
     </div>
+  </div>
   );
 }
 

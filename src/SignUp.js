@@ -39,7 +39,7 @@ function SignUp({ onSignUp }) {
   };
 
   return (
-    <div className="container">
+    <div className="containerr">
       <span>Crowned</span>
       <form onSubmit={handleSubmit}>
         <input

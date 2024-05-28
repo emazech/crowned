@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./scss/main.scss";
 
 import Map from "./components/Map/Map";
@@ -11,6 +11,10 @@ const Maze = () => {
   const [playGame, setPlayGame] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(false);
+
+  useEffect(() => {
+    document.querySelector('.maze-container').classList.add('maze-styles');
+  }, []);
 
   const gameFunctions = {
     isDead: function () {

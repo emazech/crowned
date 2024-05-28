@@ -16,7 +16,7 @@ function CategoryAndNumOfLettersToChoose() {
     const handleSubmit = (event) => {
     event.preventDefault();
         if(inputs.category !== undefined && inputs.level !== undefined) {
-            navigate(`/game?category=${inputs.category}&level=${inputs.level}`);
+            navigate(`/save-the-cheese?category=${inputs.category}&level=${inputs.level}`);
         } else if(inputs.category === undefined && inputs.level !== undefined) {
             document.getElementById('errorMsg').innerText = 'Please, choose a category!';
         } else if(inputs.category !== undefined && inputs.level === undefined) {

@@ -4,7 +4,10 @@
   justify-content: center;
   flex-direction: column;
 }
-
+body {
+  background-color: pink;
+  background-image: none;
+}
 ul {
   display: flex;
   align-items: flex-end;
@@ -44,6 +47,7 @@ ul {
   align-self: center;
   display: flex;
   height: 3rem;
+  
 }
 
 button {
@@ -57,6 +61,8 @@ button {
   color: white;
   font-size: 18px;
   font-weight: bold;
+  width: 5px;
+  height: 10px;
 }
 
 button:hover {
@@ -65,16 +71,14 @@ button:hover {
 }
 
 #btnIWantAWord {
-  min-width: 120px;
+  min-width: 300px;
   min-height: 30px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
   border-right: 2px solid white;
   align-self: flex-end;
 }
 
 #backBtn {
-  min-width: 120px;
+  min-width: 300px;
   min-height: 30px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

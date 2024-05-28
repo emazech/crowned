@@ -41,7 +41,7 @@ const Home = () => {
     <>
       <div id="quizDiv">
           <>
-            {username ? (
+          
               <>
                 <main className="main">
                   {stop ? (
@@ -84,9 +84,6 @@ const Home = () => {
                   moneyPyramid={moneyPyramid}
                 />
               </>
-            ) : (
-              <Start setUsername={setUsername} />
-            )}
           </>
       
       </div>

@@ -6,46 +6,42 @@ import HangmanDisplay from './HangmanDisplay.js';
 import checkmark from '../Images/checkmark.png';
 import xmark from '../Images/xmark.png';
 import mouse from '../Images/mouse.png';
-import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult } from '../Components/Word.js';
+import { societyAndEasy} from '../Components/Word.js';
 
 function WordToGuess() {
-
     const [linesForWordToGuess, setLinesForWordToGuess] = useState([]);
     const [word, setWord] = useState([]);
     const [wrongGuess, setWrongGuess] = useState(0);
     const [wordSelected, setWordSelected] = useState(false);
 
     const fragment = decodeURIComponent(window.location.hash);
-    const params = fragment.split('?')[1].split('&').map(param => param.split('='));
+    const paramsString = fragment.split('?')[1] || '';  // Provide a default empty string if no query params exist
+    const params = paramsString.split('&').map(param => param.split('='));
     const queryParams = Object.fromEntries(params);
-    const category = queryParams.category;
-    const level = queryParams.level;
+    const category = queryParams.category || 'society';
+    const level = queryParams.level || 'easy';     
     
     let wordsToChoseFrom;
 
     switch (category) {
-        case 'nature':
-            wordsToChoseFrom = { easy: natureAndEasy, medium: natureAndMedium, hard: natureAndDifficult };
-            break;
-        case 'entertainment':
-            wordsToChoseFrom = { easy: entertainmentAndEasy, medium: entertainmentAndMedium, hard: entertainmentAndDifficult };
-            break;
         default:
-            wordsToChoseFrom = { easy: societyAndEasy, medium: societyAndMedium, hard: societyAndDifficult };
+            wordsToChoseFrom = { easy: societyAndEasy};
             break;
     }
 
     const setOfWords = wordsToChoseFrom[level];
 
     function returnAWordToGuess() {
+        if (!setOfWords || setOfWords.length === 0) {
+            console.error(`No words available for category "${category}" and level "${level}"`);
+            return;
+        }
+
         let indexOfRandomWord = Math.floor(Math.random() * setOfWords.length);
 
         setWrongGuess(0);
 
-        setOfWords.forEach(searchForTheValueFromSetOfWordsWithTheIndexOfRandomWord);
-
-        function searchForTheValueFromSetOfWordsWithTheIndexOfRandomWord(item, index) {
-
+        setOfWords.forEach((item, index) => {
             if (index === indexOfRandomWord) {
                 let word = item;
 
@@ -60,8 +56,7 @@ function WordToGuess() {
                 setWord(word);
                 setWordSelected(true);
             }
-
-        }
+        });
 
         const elements = document.getElementsByClassName('letterAboveLine');
         for (let i = 0; i < elements.length; i++) {
@@ -69,24 +64,18 @@ function WordToGuess() {
         }
 
         document.getElementById('mark').style.opacity = 0;
-        if( document.getElementById('mouse')) document.getElementById('mouse').src = mouse;
+        if (document.getElementById('mouse')) document.getElementById('mouse').src = mouse;
         let lettersOfAbcFromThePreviousWord = document.getElementsByClassName('letters');
-        (Array.from(lettersOfAbcFromThePreviousWord)).forEach((letterFromPreviousWord, indexOfLetterFromPreviousWord) => {
-            letterFromPreviousWord.classList.remove('alreadyInWordLetter');
-            letterFromPreviousWord.classList.remove('wrongLetterGuess');
-            letterFromPreviousWord.classList.remove('untriedLetter');
+        Array.from(lettersOfAbcFromThePreviousWord).forEach(letterFromPreviousWord => {
+            letterFromPreviousWord.classList.remove('alreadyInWordLetter', 'wrongLetterGuess', 'untriedLetter');
         });
 
         return [linesForWordToGuess, word];
     }
 
-    const backToMainPage = () => {
-        window.location.href = '/save-the-cheese/';
-    };
-
     useEffect(() => {
         returnAWordToGuess();
-    }, );
+    }, []);
 
     return (
         <>
@@ -99,19 +88,16 @@ function WordToGuess() {
                         </span>
                     </li>
                 </ul>
-                <br></br>
+                <br />
                 {wordSelected && <HangmanDisplay wrongGuess={wrongGuess}></HangmanDisplay>}
-                <br></br>
-                <br></br>
+                <br /><br />
                 <div id="buttonDiv">
                     <button type="button" onClick={returnAWordToGuess} id="btnIWantAWord">I want another word!</button>
-                    <button type="button" id="backBtn" onClick={backToMainPage}>Back to the main page!</button>
                 </div>
             </div>
             <LettersToTry word={word} wrongGuess={wrongGuess} onWrongLetter={() => setWrongGuess(wrongGuess + 1)}></LettersToTry>
         </>
-    )
-
+    );
 }
 
 export default WordToGuess;

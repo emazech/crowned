@@ -10,6 +10,7 @@ const SnakeGame = () => {
     const [score, setScore] = useState(0);
     const [canChangeDirection, setCanChangeDirection] = useState(true);
     const [gameStarted, setGameStarted] = useState(false);
+    const gameid = 5;
 
     useEffect(() => {
         const handleKeyPress = (event) => {
@@ -117,12 +118,36 @@ const SnakeGame = () => {
         return newPosition;
     };
 
+    const userId = localStorage.getItem('userid');
+
+    const sendScoreToBackend = async (userId, gameid, newScore) => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/score', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ score: newScore, user_id: userId, game_id: gameid }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+  
+        const result = await response.json();
+        console.log('Score sent successfully:', result);
+      } catch (error) {
+        console.error('Failed to send score:', error);
+        console.log(userId, gameid, newScore);
+      }
+    };
     const restartGame = () => {
         setSnakeBody([{ x: 6, y: 9 }, { x: 5, y: 9 }, { x: 4, y: 9 }]);
         setFoodPosition({ x: 10, y: 10 });
         setDirection('RIGHT');
         setGameOver(false);
-        setScore(0);
+        sendScoreToBackend(userId, gameid, score);
+        setScore(0); 
         setGameStarted(false);
     };
 

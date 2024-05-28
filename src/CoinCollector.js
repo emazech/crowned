@@ -97,7 +97,6 @@ const CoinCollector = () => {
     setGameStarted(true);
   };
 
-
   const restartGame = () => {
     setPosition({ row: 0, col: 0 });
     setCoins(generateRandomCoins());
@@ -108,43 +107,46 @@ const CoinCollector = () => {
   };
 
   return (
-    <div className="background">
-      {gameStarted ? ( // Render the game or countdown timer based on gameStarted state
-        <>
-          <div className="score">Score: {score}</div>
-          {coins.map((coin) => (
+    <div className='game-container'> {/* Inline style for background color */}
+      <div className="background">
+        {gameStarted ? ( // Render the game or countdown timer based on gameStarted state
+          <>
+            <div className="score">Score: {score}</div>
+            {coins.map((coin) => (
+              <img
+                key={coin.id}
+                src={coinImage}
+                alt="Coin"
+                className="coin"
+                style={{
+                  top: `${coin.row * squareSize + (squareSize - 20) / 2}px`,
+                  left: `${coin.col * squareSize + (squareSize - 20) / 2}px`,
+                }}
+              />
+            ))}
             <img
-              key={coin.id}
-              src={coinImage}
-              alt="Coin"
-              className="coin"
+              src={characterImage}
+              alt="Character"
+              className="character"
               style={{
-                top: `${coin.row * squareSize + (squareSize - 20) / 2}px`,
-                left: `${coin.col * squareSize + (squareSize - 20) / 2}px`,
+                top: `${position.row * squareSize}px`,
+                left: `${position.col * squareSize}px`,
               }}
             />
-          ))}
-          <img
-            src={characterImage}
-            alt="Character"
-            className="character"
-            style={{
-              top: `${position.row * squareSize}px`,
-              left: `${position.col * squareSize}px`,
-            }}
-          />
-          {gameOver && (
-            <button className="restart-button" onClick={restartGame}>
-              Restart Game
-            </button>
-          )}
-        </>
-      ) : (
-        <div className="countdown-timer-wrapper">
-          <Timer hours={0} minutes={0} seconds={3} onTimerEnd={startGame} />
-        </div>
-      )}
+            {gameOver && (
+              <button className="restart-button" onClick={restartGame}>
+                Restart Game
+              </button>
+            )}
+          </>
+        ) : (
+          <div className="countdown-timer-wrapper">
+            <Timer hours={0} minutes={0} seconds={3} onTimerEnd={startGame} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
+
 export default CoinCollector;

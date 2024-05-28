@@ -1,22 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Cute+Font&display=swap");
 
-.container {
+
+.containerr {
   position: relative;
   max-width: 400px;
   background-color: white;
-  margin: 100px auto;
+  background: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #fadadd;
   margin-left: 60%;
+  border-radius: 15px;
+  margin-top: 120px;
 }
-.container span {
+.containerr span {
   font-family: "Cute Font", cursive;
   font-size: 50px;
 }
-.container input {
+.containerr input {
   font-family: "Cute Font", cursive;
   font-size: 20px;
   width: 100%;
@@ -28,11 +31,11 @@
   box-sizing: border-box;
   color: rgb(246, 62, 215);
 }
-.container input::placeholder {
+.containerr input::placeholder {
   color: #fadadd;
 }
 
-.container .signup-link {
+.containerr .signup-link {
   font-family: "Cute Font", cursive;
   font-size: 20px;
   text-align: center;
@@ -58,3 +61,41 @@
   text-decoration: none;
   color: #fadadd;
 }
+
+
+.app {
+  background-color: #fadadd;
+  background-repeat: no-repeat;
+}
+.side {
+  position: fixed;
+  top: -5%;
+  right: 60%;
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.side img {
+  max-width: 100%;
+  max-height: 50%;
+  margin-bottom: 25px;
+}
+.crown {
+  font-family: "Cute Font", cursive;
+  font-size: 80px;
+  color: white;
+  width: 50rem;
+  margin-left: -60%;
+}
+.crown-icon {
+  position: relative;
+  width: 80px;
+  height: auto;
+  top: 14%;
+  left: 61%;
+  margin-bottom: -4px;
+} 
